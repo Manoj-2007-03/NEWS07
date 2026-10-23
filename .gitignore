@@ -1,0 +1,30 @@
+# Local SQLite Databases
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Configuration & Secrets
+newsroom.properties
+*.key
+*.secret
+
+# Build outputs
+bin/
+target/
+scratch/
+*.class
+*.jar
+!lib/*.jar
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# System & logs
+*.log
+sources.txt

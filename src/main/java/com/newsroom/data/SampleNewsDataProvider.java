@@ -1,0 +1,747 @@
+package com.newsroom.data;
+
+import com.newsroom.model.Article;
+import com.newsroom.model.Category;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Dedicated local data provider supplying realistic sample editorial articles.
+ * Meets the requirement of at least 30 structured articles across all categories.
+ * 
+ * Note: These articles represent sample editorial mock data created for demonstration
+ * purposes and do not claim to be live, verified reporting.
+ */
+public final class SampleNewsDataProvider {
+
+    private SampleNewsDataProvider() {
+        // Static provider
+    }
+
+    public static List<Article> generateSampleArticles() {
+        List<Article> list = new ArrayList<>();
+        LocalDateTime now = LocalDateTime.now();
+
+        // -------------------------------------------------------------
+        // FEATURED HERO STORY
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-feat-01")
+                .imageUrl("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80")
+                .title("Global Energy Summit Ratifies Historic Accord for Decentralized Clean Grids")
+                .summary("Delegates from 68 nations in Geneva finalize the International Mesh Grid Treaty, establishing standardized protocols for peer-to-peer renewable distribution and microgrid resilience.")
+                .content("""
+                        GENEVA — Following fourteen days of intensive multilateral negotiations, ministers and engineering delegates from sixty-eight nations signed the International Mesh Grid Treaty late Wednesday evening. The accord establishes the first globally harmonized technical framework for trans-boundary renewable energy exchange, community-level microgrids, and decentralized storage networks.
+
+                        The landmark agreement directly addresses the critical bottleneck of twenty-first-century decarbonization: transmission curtailment. While utility-scale solar and offshore wind installations have scaled exponentially over the past five years, national grids engineered during the twentieth century have struggled to absorb distributed, variable loads. Under the new treaty, participating nations will adopt interoperable high-voltage direct current (HVDC) interfaces and open-standard smart routing software.
+
+                        "We are transitioning from the era of centralized, vulnerable power architectures to self-healing distributed meshes," stated Dr. Elena Rostova, High Commissioner for Transnational Infrastructure. "This treaty guarantees that a surplus of offshore wind generated in the North Sea can seamlessly balance solar deficits across Mediterranean micro-regions within milliseconds, without prohibitive tariff walls."
+
+                        Key provisions include a $120 billion multilateral contingency fund to assist emerging economies in upgrading local substation switches, alongside a pledge to open-source all transmission telemetry standards by mid-2027. Industrial energy consumers have lauded the predictability the accord affords, while civil society observers emphasize the treaty's mandate for indigenous land sovereignty during corridor expansions.
+
+                        Pilot testing of the primary Alpine-Balkan interconnect is scheduled to commence early next spring, marking an unprecedented operational test of automated algorithmic load balancing at continental scale.
+                        """)
+                .author("Julian Montgomery")
+                .source("Global Affairs Desk")
+                .category(Category.WORLD)
+                .publishedAt(now.minusHours(2))
+                .readingTimeMinutes(6)
+                .isFeatured(true)
+                .isTrending(true)
+                .build());
+
+        // -------------------------------------------------------------
+        // WORLD (5 articles)
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-world-02")
+                .imageUrl("https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80")
+                .title("Pacific Maritime Corridor Agreement Enhances Autonomous Cargo Shipping Safety")
+                .summary("A tri-nation consortium between Japan, Singapore, and Australia deploys satellite-linked navigational corridors to safeguard commercial autonomous vessels across the western Pacific.")
+                .content("""
+                        SINGAPORE — Maritime authorities from Japan, Singapore, and Australia announced the operational activation of the 'Pacific Blue Corridor' this morning. The initiative encompasses 4,200 nautical miles of monitored oceanic pathways designated specifically for semi-autonomous and uncrewed container freighters.
+
+                        The corridor integrates dual-band low-Earth-orbit satellite tracking with automated collision-avoidance telemetry. Participating merchant vessels will broadcast encrypted situational awareness feeds directly to synchronized maritime operations centers in Tokyo, Singapore, and Sydney, creating real-time visibility across crowded choke points.
+
+                        "Maritime commerce accounts for nearly eighty percent of global goods volume," noted Maritime Director Rachel Tan during the inaugural briefing at Marina Bay. "As commercial shipping lines commission commercial-scale battery-hybrid and hydrogen vessels, standardized digital fairways are essential to prevent maritime bottlenecks and ensure absolute navigational safety."
+
+                        Environmental advocates have welcomed the project, pointing to data indicating that computer-optimized routing within the corridor reduces bunker fuel consumption and localized carbon emissions by approximately twelve percent compared to conventional manual waypoints.
+                        """)
+                .author("Alistair Thorne")
+                .source("Maritime Dispatch")
+                .category(Category.WORLD)
+                .publishedAt(now.minusHours(5))
+                .readingTimeMinutes(4)
+                .isTrending(true)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-world-03")
+                .imageUrl("https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80")
+                .title("Nordic Clean Energy Grid Reaches Ninety-Eight Percent Carbon-Free Generation")
+                .summary("A combination of late-autumn wind yields, modern pumped hydro, and geothermal generation enables Scandinavia to establish a new seasonal milestone for clean energy.")
+                .content("""
+                        OSLO — Official telemetry released by the Scandinavian Grid Association confirms that ninety-eight point two percent of all electricity consumed across Norway, Sweden, and Denmark over the past month originated from zero-emission sources.
+
+                        The achievement was catalyzed by newly commissioned offshore wind farms in the Kattegat strait operating in tandem with upgraded pumped-storage reservoirs in the Norwegian interior. When offshore winds peaked, automated pumps lifted water into high-elevation reservoirs, creating a natural mechanical battery capable of releasing instant hydro power during low-wind lulls.
+
+                        Energy economists emphasize that the achievement demonstrates the viability of baseload renewables when coupled with robust regional interconnection rather than isolated national grids.
+                        """)
+                .author("Karin Lindqvist")
+                .source("Nordic Gazette")
+                .category(Category.WORLD)
+                .publishedAt(now.minusHours(14))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-world-04")
+                .imageUrl("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80")
+                .title("Latin American Trade Corridor Unifies Customs Clearance Via Distributed Verification")
+                .summary("Chile, Peru, and Colombia launch a harmonized digital customs framework to cut transit bottlenecks and reduce paperwork across Pacific ports.")
+                .content("""
+                        LIMA — Cross-border freight transit between three major South American economies took a transformative step forward today as customs authorities activated a synchronized digital clearance gateway.
+
+                        The unified platform replaces paper-based manifest inspections with cryptographic digital bills of lading. Logistics operators estimate the framework will compress border dwell times from thirty-six hours down to under forty-five minutes at major maritime terminals including Callao and Valparaíso.
+
+                        Officials expect regional agricultural exporters and copper mining consortia to save hundreds of millions in cold-chain logistics costs within the first year of deployment.
+                        """)
+                .author("Mateo Silva")
+                .source("Americas Bureau")
+                .category(Category.WORLD)
+                .publishedAt(now.minusDays(1).minusHours(3))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-world-05")
+                .imageUrl("https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=1200&q=80")
+                .title("Mediterranean Heritage Initiative Completes High-Precision 3D Mapping of Venice Lagoon")
+                .summary("Using airborne LiDAR and sub-surface sonar, international oceanographers complete the most detailed morphological survey of Venetian canals to date.")
+                .content("""
+                        VENICE — A consortium of Italian civil engineers and international oceanographers has concluded a three-year bathymetric mapping initiative covering Venice and its surrounding lagoon.
+
+                        Using sub-centimeter LiDAR and multibeam sonar scanners, researchers documented the structural foundations of over four hundred historic bridges and twenty thousand canal-facing building piles. The resulting digital twin will assist municipal flood engineers in fine-tuning the MOSE barrier deployments against changing tidal cycles.
+
+                        "We now possess an architectural and hydrological blueprint of Venetian canal geology that will inform structural preservation for centuries to come," announced project director Dr. Gianna Bellini.
+                        """)
+                .author("Federico Rossi")
+                .source("European Journal")
+                .category(Category.WORLD)
+                .publishedAt(now.minusDays(2))
+                .readingTimeMinutes(4)
+                .build());
+
+        // -------------------------------------------------------------
+        // INDIA (6 articles)
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-india-01")
+                .imageUrl("https://images.unsplash.com/photo-1517976487507-5b3b11329241?auto=format&fit=crop&w=1200&q=80")
+                .title("ISRO Successfully Conducts Landing Experiment for Next-Gen Reusable Launch Vehicle")
+                .summary("The autonomous winged spaceplane touched down precisely on the runway at Aeronautical Test Range in Chitradurga, paving the way for orbital payload return missions.")
+                .content("""
+                        CHITRADURGA, KARNATAKA — The Indian Space Research Organisation (ISRO) achieved another major aerospace milestone this morning with the successful autonomous landing of its Reusable Launch Vehicle Technology Demonstrator (RLV-TD).
+
+                        Released from an Indian Air Force Chinook helicopter at an altitude of 4.5 kilometers, the uncrewed aerodynamic craft executed cross-range maneuvers and atmospheric deceleration algorithms entirely under computer control before deploying its tricycle landing gear and braking parachute onto the runway centerline.
+
+                        ISRO Chairman Dr. S. Somanath commended the telemetry and guidance teams: "Today's flawless touchdown demonstrates that our indigenous autonomous navigation, terminal descent guidance, and landing gear mechanisms meet the stringent tolerances demanded by orbital re-entry missions. This brings us one step closer to dramatic cost reductions in satellite launches."
+
+                        The next phase of the program will involve an orbital orbital insertion launch atop a specialized solid booster, testing thermal protection tiles and high-mach hypersonic gliding over the Bay of Bengal.
+                        """)
+                .author("Aarav Ramanathan")
+                .source("Science & Space Bureau")
+                .category(Category.INDIA)
+                .publishedAt(now.minusHours(4))
+                .readingTimeMinutes(5)
+                .isFeatured(false)
+                .isTrending(true)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-india-02")
+                .imageUrl("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80")
+                .title("Semiconductor Fabrication Facility in Dholera Begins Pilot Silicon Ingot Production")
+                .summary("India's national chip ecosystem marks a critical transition as commercial cleanrooms in Gujarat initiate test runs for 28nm automotive and industrial microcontrollers.")
+                .content("""
+                        DHOLERA, GUJARAT — The premier cleanroom facility at Dholera Special Investment Region powered up its ultra-pure water and inert gas systems this week, initiating test runs of 300mm silicon wafers.
+
+                        The mega-foundry, built in partnership with leading global semiconductor technology leaders, represents an investment of over $11 billion. In its initial qualification phase, the facility will fabricate 28-nanometer and 40-nanometer nodes engineered specifically for automotive engine control units, IoT telemetry sensors, and smart grid meters.
+
+                        Minister for Electronics and IT highlighted that over thirty domestic ancillary suppliers—ranging from specialty gas producers to precision chemical packaging firms—have established local delivery hubs within a ten-kilometer radius of the fab, building a sustainable manufacturing cluster.
+                        """)
+                .author("Priyanka Deshmukh")
+                .source("Technology & Economy")
+                .category(Category.INDIA)
+                .publishedAt(now.minusHours(9))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-india-03")
+                .imageUrl("https://images.unsplash.com/photo-1556742049-0a67e557224d?auto=format&fit=crop&w=1200&q=80")
+                .title("Cross-Border UPI Integration Expands to Ten Nations Across Southeast Asia and Europe")
+                .summary("The National Payments Corporation of India completes direct bilateral linkage with global settlement rails, enabling instant remittances and merchant QR payments.")
+                .content("""
+                        MUMBAI — In a significant expansion of India's digital public infrastructure, the National Payments Corporation of India (NPCI) confirmed that its Unified Payments Interface (UPI) can now be used natively across ten international territories.
+
+                        Indian travelers and overseas workers can now scan local QR codes or execute real-time peer-to-peer remittances in countries including France, Singapore, Mauritius, UAE, and Thailand without incurring high foreign currency markup fees.
+
+                        The system relies on central bank currency-swap bridges that settle transactions directly between local domestic accounts within seconds, bypassing traditional legacy wire correspondence networks.
+                        """)
+                .author("Vikramaditya Sen")
+                .source("Financial Chronicle")
+                .category(Category.INDIA)
+                .publishedAt(now.minusHours(16))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-india-04")
+                .imageUrl("https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=1200&q=80")
+                .title("Western Ghats High-Speed Rail Viaducts Built with Zero-Displacement Wildlife Corridors")
+                .summary("Engineers complete a 140-kilometer eco-sensitive railway stretch incorporating elevated spans and acoustic sound baffles to preserve biodiversity.")
+                .content("""
+                        PUNE — Railway infrastructure engineers have completed the civil structural phase of the Mumbai-Goa semi-high-speed link through the Western Ghats biodiversity hotspot, setting a new benchmark for ecological infrastructure design.
+
+                        To preserve elephant migratory paths and fragile canopy wildlife, more than sixty-five percent of the corridor is constructed on elevated viaducts rising up to twenty-eight meters above the valley floor. Specialized downward-curving sound barriers suppress wheel noise, preventing disturbance to nocturnal fauna.
+
+                        Biologists monitoring the corridor with camera traps reported undisturbed movement of leopard and elephant herds beneath the finished piers throughout the monsoon season.
+                        """)
+                .author("Meera Nair")
+                .source("Infrastructure & Ecology")
+                .category(Category.INDIA)
+                .publishedAt(now.minusDays(1).minusHours(5))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-india-05")
+                .imageUrl("https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80")
+                .title("Rajasthan Ultra-Mega Solar and Storage Park Crosses 10-Gigawatt Milestone")
+                .summary("Bhadla and Thar desert expanses generate record clean gigawatts coupled with lithium-iron-phosphate battery banks to supply evening peak demand.")
+                .content("""
+                        JAIPUR — The state of Rajasthan has crossed ten gigawatts of operational grid-tied solar capacity across its Thar desert installations, cementing its role as the nation's clean energy capital.
+
+                        The newest installation integrates a 2,400 megawatt-hour energy storage system using fire-safe lithium iron phosphate chemistry. This enables the facility to dispatch clean electricity into the national northern grid during peak evening consumption hours between 7:00 PM and 11:00 PM.
+
+                        Local water stewardship has also been enhanced through automated robotic dry-cleaning sweeps that clear desert dust from photovoltaic panels without consuming groundwater.
+                        """)
+                .author("Rajeshwar Chauhan")
+                .source("Energy Bureau")
+                .category(Category.INDIA)
+                .publishedAt(now.minusDays(2).minusHours(1))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-india-06")
+                .imageUrl("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80")
+                .title("Ayushman Bharat Digital Mission Reaches 500 Million Unified Health Accounts")
+                .summary("India's national digital health initiative links hospitals, diagnostic labs, and primary clinics into a consent-driven health data repository.")
+                .content("""
+                        NEW DELHI — India's Ayushman Bharat Digital Mission (ABDM) has surpassed five hundred million registered Ayushman Bharat Health Accounts (ABHA), according to data released by the National Health Authority.
+
+                        The platform allows citizens to securely access diagnostic reports, prescriptions, and discharge summaries on their mobile devices, granting encrypted, time-limited consent to physicians across state borders.
+
+                        Healthcare experts note that seamless digital health histories have drastically reduced redundant blood tests and diagnostic imaging costs, particularly for rural patients seeking specialized treatment in tertiary care medical centers.
+                        """)
+                .author("Dr. Ananya Joshi")
+                .source("Healthcare Monitor")
+                .category(Category.INDIA)
+                .publishedAt(now.minusDays(3))
+                .readingTimeMinutes(4)
+                .build());
+
+        // -------------------------------------------------------------
+        // TECHNOLOGY (6 articles)
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-tech-01")
+                .imageUrl("https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80")
+                .title("Quantum Computing Breakthrough: Researchers Achieve 99.9% Two-Qubit Gate Fidelity at Scale")
+                .summary("A joint research lab demonstrates silicon spin qubits operating at 1.5 Kelvin with error rates below the fault-tolerant surface code threshold.")
+                .content("""
+                        SAN FRANCISCO — Physicists and quantum engineers have published experimental results demonstrating 99.92 percent two-qubit logic gate fidelity using silicon quantum-dot arrays. Crucially, the milestone was achieved at an operating temperature of 1.5 Kelvin—orders of magnitude warmer than the millikelvin cryogenic environments typically required by superconducting systems.
+
+                        The paper, published in Applied Quantum Physics, clears one of the most stubborn engineering hurdles facing quantum computer commercialization. By operating above 1 Kelvin, quantum processors can be integrated directly alongside conventional CMOS control circuitry on the same silicon die, eliminating thousands of bulky coaxial cables.
+
+                        "This is the inflection point where quantum architecture transitions from exotic physics laboratory rigs to industrial semiconductor foundries," said lead investigator Dr. Marcus Vance. "We can utilize standard commercial photolithography steppers to fabricate millions of identical spin qubits."
+
+                        Commercial fault-tolerant systems designed to simulate complex molecular chemistry for battery electrolytes and drug candidates are now projected to reach production testing within three years.
+                        """)
+                .author("Marcus Vance")
+                .source("Quantum Engineering Review")
+                .category(Category.TECHNOLOGY)
+                .publishedAt(now.minusHours(3))
+                .readingTimeMinutes(6)
+                .isTrending(true)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-tech-02")
+                .imageUrl("https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80")
+                .title("Open-Source Multimodal AI Architecture Unveiled for On-Device Autonomous Robotics")
+                .summary("The novel transformer architecture processes 4K video feeds, audio spatial cues, and tactile sensor arrays locally at 120 frames per second.")
+                .content("""
+                        BERKELEY — The Robotics Open Foundation released 'OmniPerception-V3' today, an open-weights multimodal vision-language-action model designed specifically for edge hardware on mobile robots and uncrewed aerial vehicles.
+
+                        Unlike cloud-dependent large models that introduce hundreds of milliseconds of network latency, the new architecture consumes only four gigabytes of unified memory and runs inference locally on embedded neural processing units at over 120 frames per second.
+
+                        Robotics developers demonstrated the model guiding quadruped robots through unmapped construction debris, dynamically identifying unstable footing, and interpreting natural speech commands from engineers without requiring Wi-Fi connectivity.
+                        """)
+                .author("Seraphina Chen")
+                .source("AI & Robotics Journal")
+                .category(Category.TECHNOLOGY)
+                .publishedAt(now.minusHours(7))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-tech-03")
+                .imageUrl("https://images.unsplash.com/photo-1558441719-7033878b2762?auto=format&fit=crop&w=1200&q=80")
+                .title("Solid-State Battery Tech Reaches 500 Wh/kg in Automotive Destructive Testing")
+                .summary("Automotive safety trials confirm ceramic electrolyte pouch cells survive severe impact and nail penetration without thermal runaway while doubling EV range.")
+                .content("""
+                        STUTTGART — German automotive safety testing labs confirmed today that third-generation solid-state lithium-metal batteries have successfully cleared rigorous nail penetration, high-speed impact, and extreme heat degradation benchmarks.
+
+                        The cells attained an energy density of 505 Watt-hours per kilogram, approximately double the density of mainstream nickel-manganese-cobalt batteries. During catastrophic mechanical puncture tests, the ceramic solid electrolyte prevented internal short-circuit ignitions, generating zero smoke or open flame.
+
+                        Automakers plan to begin road-testing prototype luxury touring sedans equipped with the 1,000-kilometer single-charge pack in the fourth quarter.
+                        """)
+                .author("Henrik Weber")
+                .source("Automotive Tech Today")
+                .category(Category.TECHNOLOGY)
+                .publishedAt(now.minusHours(18))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-tech-04")
+                .imageUrl("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80")
+                .title("Operating System Kernels Accelerate Memory-Safe Language Adoption in Core Subsystems")
+                .summary("Major enterprise Linux distributions and microkernel projects report a seventy percent drop in zero-day vulnerabilities following memory-safe refactoring.")
+                .content("""
+                        SEATTLE — The annual Systems Software Safety Symposium concluded with striking empirical data on modern systems programming: the gradual migration of device drivers and network protocol stacks to memory-safe languages like Rust has eliminated nearly three-quarters of historically persistent buffer-overflow bugs.
+
+                        Engineering teams from major cloud hypervisors revealed that transition programs launched three years ago are already yielding dividends in reduced patch downtime and lower intrusion risk across multi-tenant data centers.
+                        """)
+                .author("Jordan Blake")
+                .source("Systems Architecture")
+                .category(Category.TECHNOLOGY)
+                .publishedAt(now.minusDays(1).minusHours(8))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-tech-05")
+                .imageUrl("https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80")
+                .title("Next-Generation Photonic Interconnects Solve Data Center Bandwidth Bottlenecks")
+                .summary("Optical silicon transceivers replacing copper traces inside AI server clusters slash interconnect latency by eighty percent while cutting power draw in half.")
+                .content("""
+                        SAN JOSE — Cloud infrastructure hardware providers announced commercial availability of co-packaged optical transceivers capable of transmitting 3.2 Terabits per second per lane directly from processor packages.
+
+                        By replacing high-frequency copper traces with microscopic silicon waveguides and laser emitters, data center operators can interconnect thousands of neural processing chips as a single unified memory matrix without experiencing severe thermal throttling.
+                        """)
+                .author("David K. Lin")
+                .source("Hardware Horizons")
+                .category(Category.TECHNOLOGY)
+                .publishedAt(now.minusDays(2).minusHours(4))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-tech-06")
+                .imageUrl("https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80")
+                .title("Next-Gen Browser Standards Body Adopts Zero-Trust Web Isolation Protocols")
+                .summary("A major update to web execution sandboxes isolates third-party script memory spaces, mitigating supply chain browser attacks.")
+                .content("""
+                        GENEVA — The Web Standards Steering Committee has finalized specifications for 'Isolated Origin Boundaries', a browser architectural standard that enforces hardware-level process separation for third-party scripts and embedded analytics widgets.
+
+                        Security researchers say the standard will effectively neutralize malicious supply chain attacks targeting e-commerce checkout forms and financial portals by preventing untrusted code from accessing document object model state.
+                        """)
+                .author("Clara Hughes")
+                .source("Web Security Standard")
+                .category(Category.TECHNOLOGY)
+                .publishedAt(now.minusDays(3).minusHours(2))
+                .readingTimeMinutes(4)
+                .build());
+
+        // -------------------------------------------------------------
+        // BUSINESS (5 articles)
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-biz-01")
+                .imageUrl("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80")
+                .title("Central Banks Signal Coordinated Shift Toward Wholesale Digital Currency Settlement")
+                .summary("Eight major central banks publish technical architecture for cross-border atomic settlement, reducing foreign exchange counterparty risks.")
+                .content("""
+                        BASEL — The Bank for International Settlements (BIS) alongside eight central banks, including the Reserve Bank of India, European Central Bank, and Bank of England, presented the finalized blueprint for Project Agorá.
+
+                        The platform leverages a unified programmable ledger where tokenized central bank reserves and commercial bank deposits coexist. In pilot executions, international payments that previously took three business days to clear settled instantaneously with atomic delivery-versus-payment finality.
+
+                        Financial economists noted that the elimination of correspondent banking fees and trapped collateral could unlock an estimated $4 trillion in corporate working capital worldwide.
+                        """)
+                .author("Charlotte Beaumont")
+                .source("Financial Markets Review")
+                .category(Category.BUSINESS)
+                .publishedAt(now.minusHours(6))
+                .readingTimeMinutes(5)
+                .isTrending(true)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-biz-02")
+                .imageUrl("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80")
+                .title("Global Venture Investment Rebounds with Record Allocations for Deep Tech and Fusion")
+                .summary("Quarterly capital flows reveal institutional investors pivoting from consumer software toward hard tech, advanced manufacturing, and climate engineering.")
+                .content("""
+                        LONDON — Global venture capital investments climbed twenty-two percent quarter-over-quarter, led by unprecedented funding rounds for private fusion energy ventures, synthetic biology manufacturing, and quantum computing hardware.
+
+                        Market analysts attribute the shift to sovereign wealth funds and endowment offices seeking high-defensibility assets with multi-decade intellectual property moats rather than low-barrier consumer application software.
+                        """)
+                .author("Nigel Sterling")
+                .source("Venture Index")
+                .category(Category.BUSINESS)
+                .publishedAt(now.minusHours(12))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-biz-03")
+                .imageUrl("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80")
+                .title("Aviation Giants Accelerate Delivery Schedules for Sustainable Aviation Fuel Turbines")
+                .summary("Leading aerospace conglomerates report airline orders for 100% synthetic kerosene-compatible engines surge ahead of global emission mandates.")
+                .content("""
+                        TOULOUSE — Commercial aircraft manufacturing backlogs surged to historic highs as global airlines placed multi-billion-dollar fleet renewal orders for high-bypass turbofans certified to run on one hundred percent non-fossil synthetic aviation fuel.
+
+                        Airlines face stringent carbon offset quotas starting in 2028 and are prioritizing fuel-efficient, drop-in biofuel aircraft that require zero ground infrastructure modifications at commercial international airports.
+                        """)
+                .author("Antoine Dubois")
+                .source("Aerospace Business")
+                .category(Category.BUSINESS)
+                .publishedAt(now.minusDays(1).minusHours(2))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-biz-04")
+                .imageUrl("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80")
+                .title("Commercial Real Estate Modernization: Retrofitting Downtown Towers into Biospheric Hubs")
+                .summary("Urban office landlords invest in air filtration, living plant walls, and flexible creative ateliers to lure tenants back to metropolitan cores.")
+                .content("""
+                        NEW YORK — In urban centers from Manhattan to Singapore, commercial property trusts are undertaking extensive capital renovations, converting vacant cubicle floors into biophilic coworking spaces, rooftop hydroponic gardens, and high-performance audio-visual media suites.
+
+                        Early return metrics suggest properties featuring indoor air quality sensors and natural light enhancements command twenty to thirty percent rental premiums over legacy office space.
+                        """)
+                .author("Evelyn Brooks")
+                .source("Urban Property Journal")
+                .category(Category.BUSINESS)
+                .publishedAt(now.minusDays(2).minusHours(6))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-biz-05")
+                .imageUrl("https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80")
+                .title("Coffee Commodity Futures Stabilize as Climate-Resilient Arabica Hybrids Reach Market")
+                .summary("Agricultural cooperatives in Colombia and Ethiopia harvest first commercial crops of drought-resistant coffee varietals, easing global supply concerns.")
+                .content("""
+                        BOGOTÁ — Commodity trading desks reported a seven percent decline in Arabica futures this week following the release of optimistic harvest yields from experimental estates in Antioquia and Sidama.
+
+                        The crops utilize newly bred hybrids combining the rich aromatic profile of traditional Arabica with the heat tolerance and leaf-rust resistance of wild Liberica strains, protecting smallholder yields amid unpredictable weather patterns.
+                        """)
+                .author("Carlos Mendez")
+                .source("Commodities Daily")
+                .category(Category.BUSINESS)
+                .publishedAt(now.minusDays(3).minusHours(5))
+                .readingTimeMinutes(3)
+                .build());
+
+        // -------------------------------------------------------------
+        // SCIENCE (5 articles)
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-sci-01")
+                .imageUrl("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80")
+                .title("James Webb Space Telescope Confirms Atmospheric Water and Carbon Dioxide on Exo-Earth Candidate")
+                .summary("Spectroscopic observations of rocky planet LHS 1140 b in the habitable zone reveal a stable atmosphere and probable temperate surface oceans.")
+                .content("""
+                        BALTIMORE — In an announcement hailed as a watershed moment for astrobiology, astronomers using the James Webb Space Telescope (JWST) confirmed the detection of clear molecular signatures for water vapor, carbon dioxide, and nitrogen in the atmosphere of exoplanet LHS 1140 b.
+
+                        Located forty-eight light-years away in the constellation Cetus, the rocky world orbits within the conservative habitable zone of a quiescent red dwarf star. Unlike many red dwarf planets that suffer intense stellar flare stripping, LHS 1140 b appears to have retained a substantial atmosphere.
+
+                        "This is our clearest atmospheric signature yet from a temperate rocky exoplanet capable of supporting liquid surface water," said lead astronomer Dr. Hannah Goldblum during a press conference at the Space Telescope Science Institute. "The spectral data strongly points toward a global ocean world with a nitrogen-dominated sky."
+
+                        The science team has been awarded an additional forty hours of director's discretionary observing time to search for trace biosignature candidates, including atmospheric methane and dimethyl sulfide.
+                        """)
+                .author("Dr. Hannah Goldblum")
+                .source("Astrophysics Dispatch")
+                .category(Category.SCIENCE)
+                .publishedAt(now.minusHours(8))
+                .readingTimeMinutes(6)
+                .isFeatured(false)
+                .isTrending(true)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sci-02")
+                .imageUrl("https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80")
+                .title("Deep-Sea Hydrothermal Vent Expedition Discovers Novel Chemosynthetic Metabolic Pathways")
+                .summary("Oceanographers diving four thousand meters into the Kermadec Trench collect bacteria that metabolize arsenic compounds without light or oxygen.")
+                .content("""
+                        AUCKLAND — A research cruise returning from the Kermadec Trench in the southwestern Pacific has isolated thirty-two previously undocumented bacterial strains living in the superheated, mineral-rich plumes of deep hydrothermal spires.
+
+                        Genomic sequencing confirmed the organisms use an enzymatic pathway that oxidizes dissolved arsenic and iron to generate chemical energy, functioning without any reliance on sunlight-derived organic carbon.
+
+                        Biochemists believe studying these unique enzymes will offer critical insights into the potential conditions under which early life emerged on Earth, as well as the search for metabolic activity beneath the icy crust of Jupiter's moon Europa.
+                        """)
+                .author("Dr. Tane Williams")
+                .source("Deep Ocean Research")
+                .category(Category.SCIENCE)
+                .publishedAt(now.minusHours(15))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sci-03")
+                .imageUrl("https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80")
+                .title("Precision CRISPR Epigenetic Editing Successfully Reverses Inherited Retinal Dystrophy in Trials")
+                .summary("Phase 2 clinical trial achieves eighty percent visual acuity restoration without cutting DNA strands by selectively tuning gene expression levels.")
+                .content("""
+                        BOSTON — Clinical researchers at Massachusetts Eye and Ear announced remarkable therapeutic results in a twenty-four-patient Phase 2 gene therapy trial.
+
+                        Patients suffering from Leber Congenital Amaurosis who received micro-injections of a base-editing CRISPR variant demonstrated statistically significant visual field expansion and low-light object recognition within twelve weeks.
+
+                        Crucially, the treatment utilized epigenetic switches that modulate gene transcription without creating double-stranded DNA breaks, virtually eliminating off-target insertion mutations that historically posed safety concerns in gene therapy.
+                        """)
+                .author("Dr. Elizabeth Harper")
+                .source("Biomedical Perspectives")
+                .category(Category.SCIENCE)
+                .publishedAt(now.minusDays(1).minusHours(10))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sci-04")
+                .imageUrl("https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=1200&q=80")
+                .title("Experimental Tokamak Sustains High-Confinement Plasma Core for Over One Thousand Seconds")
+                .summary("Magnetic fusion milestone demonstrates steady-state heat dispersal and helium ash removal in advanced superconducting magnetic containment.")
+                .content("""
+                        DAEJEON — Engineers at the Korea Superconducting Tokamak Advanced Research (KSTAR) facility announced they sustained a high-confinement mode plasma core exceeding one hundred million degrees Celsius for 1,020 continuous seconds.
+
+                        The breakthrough was enabled by tungsten divertor plates that dissipate extreme plasma exhaust temperatures without thermal cracking. Sustaining high-temperature plasma over ten minutes is widely considered the threshold where fusion engineering moves from burst experiments into true continuous power station design.
+                        """)
+                .author("Kwon Sung-min")
+                .source("Fusion Physics Weekly")
+                .category(Category.SCIENCE)
+                .publishedAt(now.minusDays(2).minusHours(7))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sci-05")
+                .imageUrl("https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=1200&q=80")
+                .title("Antarctic Ice Core Drilled to Bedrock Recovers Two-Million-Year Climate Record")
+                .summary("Paleoclimatologists unearth atmospheric air bubbles trapped during the mid-Pleistocene transition, clarifying ice age triggers.")
+                .content("""
+                        DOME C, ANTARCTICA — After five arduous drilling seasons in sub-zero temperatures, the Beyond EPICA scientific expedition reached bedrock at a depth of 3,120 meters beneath the East Antarctic ice sheet.
+
+                        Analysis of microscopic air bubbles sealed in the deepest ice layers will provide researchers with direct physical samples of Earth's atmosphere dating back two million years. The findings will help resolve longstanding scientific debates regarding greenhouse gas concentrations during the planetary shift from 41,000-year to 100,000-year glacial cycles.
+                        """)
+                .author("Claire Dupuis")
+                .source("Geophysical Chronicle")
+                .category(Category.SCIENCE)
+                .publishedAt(now.minusDays(3).minusHours(6))
+                .readingTimeMinutes(4)
+                .build());
+
+        // -------------------------------------------------------------
+        // SPORTS (5 articles)
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-sports-01")
+                .imageUrl("https://images.unsplash.com/photo-1531415074868-036b1c57e329?auto=format&fit=crop&w=1200&q=80")
+                .title("ICC World Test Championship: Thrilling Final Day at Lord's Ends in Memorable Draw")
+                .summary("Resolute batting in fading London light sees India and Australia share points after 450 overs of captivating, high-stakes Test cricket.")
+                .content("""
+                        LONDON — In five days of relentless, dramatic Test cricket that demonstrated why the longest format remains the sport's ultimate test of character, the World Test Championship encounter between India and Australia at Lord's ended in a heart-stopping draw.
+
+                        Needing fifty-two runs with two wickets remaining as dusk settled over St John's Wood, the tail-end pair weathered fifteen overs of searing reverse-swing bowling against a packed slip cordon, holding firm until umpires offered the light.
+
+                        Over 120,000 spectators attended the five-day contest, which featured three centuries, two five-wicket hauls, and bowling spells of extraordinary tactical discipline from both bowling attacks.
+                        """)
+                .author("Rohan Gavaskar")
+                .source("Cricket Digest")
+                .category(Category.SPORTS)
+                .publishedAt(now.minusHours(5))
+                .readingTimeMinutes(5)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sports-02")
+                .imageUrl("https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=1200&q=80")
+                .title("World Marathon Record Shattered in Berlin as Kinetic Shoe Technology Reaches Maturity")
+                .summary("Kenyan endurance prodigy clocks 1:59:45 in official competition, establishing the first ratified sub-two-hour marathon in history.")
+                .content("""
+                        BERLIN — History was made on the streets of Berlin this morning as twenty-four-year-old Kelvin Kipchumba crossed the Brandenburg Gate finish line in an astonishing one hour, fifty-nine minutes, and forty-five seconds.
+
+                        Unlike earlier staged exhibitions, today's race was an official World Athletics Gold Label competition, making the performance the first ratified sub-two-hour marathon in sports history.
+
+                        "My legs felt alive from the twenty-kilometer mark," an emotional Kipchumba declared. "The pacemaker cadence and the cool autumn morning made this moment possible for all of Africa."
+                        """)
+                .author("Geoffrey Mutai")
+                .source("Athletics World")
+                .category(Category.SPORTS)
+                .publishedAt(now.minusHours(11))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sports-03")
+                .imageUrl("https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80")
+                .title("Formula 1 Unveils Overhauled Aerodynamic Regulations for 2027 Season")
+                .summary("Active active-front-wing elements and simplified ground-effect tunnels designed to enable wheel-to-wheel overtaking without dirty air turbulence.")
+                .content("""
+                        MONACO — Formula 1 and the FIA officially presented the 2027 technical regulations at Monaco today, revealing significantly lighter, more nimble single-seaters designed to eliminate aerodynamic wake turbulence.
+
+                        The cars will feature active aerodynamics on both front and rear wings, adjusting automatically to reduce drag along straights and increase downforce through technical chicanes. Drivers who tested prototypes in simulators reported dramatically improved confidence when following closely through medium-speed corners.
+                        """)
+                .author("Lewis Vance")
+                .source("Motorsport Insider")
+                .category(Category.SPORTS)
+                .publishedAt(now.minusDays(1).minusHours(4))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sports-04")
+                .imageUrl("https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&w=1200&q=80")
+                .title("Grand Slam Tennis Changes Guard as Teenage Sensation Claims Roland Garros Crown")
+                .summary("A breathtaking five-set clay court battle showcases blistering topspin and tactical drop-shots, signaling a new era in men's tennis.")
+                .content("""
+                        PARIS — Court Philippe-Chatrier erupted in thunderous applause as nineteen-year-old Gabriel Navarro collapsed onto the red clay after converting his fourth championship point in a four-hour, thirty-eight-minute French Open final.
+
+                        Navarro's victory over the world number one was characterized by fearless heavy topspin groundstrokes from five feet behind the baseline, paired with delicate drop shots that neutralized his opponent's defensive reach.
+                        """)
+                .author("Chloe Marchand")
+                .source("Tennis International")
+                .category(Category.SPORTS)
+                .publishedAt(now.minusDays(2).minusHours(5))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-sports-05")
+                .imageUrl("https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=1200&q=80")
+                .title("Urban Bouldering World Cup Concludes in Tokyo with Unprecedented Route Complexity")
+                .summary("Climbers tackle dynamic dual-texture dyno holds before cheering crowds in Shibuya, solidifying sport climbing's urban appeal.")
+                .content("""
+                        TOKYO — The IFSC Bouldering World Cup in Shibuya wrapped up under dazzling spotlights as athletes from twelve nations tackled four of the most gymnastic, technically punishing boulder problems ever set in international competition.
+
+                        The finals required dynamic coordination jumps off slick dual-texture fiberglass volumes, testing core strength and microscopic fingertip friction on microscopic crimps.
+                        """)
+                .author("Kenji Sato")
+                .source("Climbing Journal")
+                .category(Category.SPORTS)
+                .publishedAt(now.minusDays(3).minusHours(1))
+                .readingTimeMinutes(3)
+                .build());
+
+        // -------------------------------------------------------------
+        // ENTERTAINMENT (5 articles)
+        // -------------------------------------------------------------
+        list.add(Article.builder()
+                .id("art-ent-01")
+                .imageUrl("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80")
+                .title("Venice International Film Festival Awards Golden Lion to Daring Indie Sci-Fi Drama")
+                .summary("Director Maya Lin's poetic chamber drama set on a remote lunar communication outpost earns a twelve-minute standing ovation at the Lido.")
+                .content("""
+                        VENICE — The 83rd Venice International Film Festival concluded at the Palazzo del Cinema with the Golden Lion awarded to 'Silent Frequency', an introspective independent science-fiction masterpiece directed by Taiwanese-American filmmaker Maya Lin.
+
+                        Filmed in 65mm on location in the volcanic landscapes of Iceland and practical studio sets, the film explores the profound emotional isolation of a deep-space radio technician who discovers anomalous acoustic recordings in lunar core samples.
+
+                        Critics lauded the film's deliberate pacing, atmospheric sound design by acclaimed composer Hildur Guðnadóttir, and subtle, heartbreaking central performance.
+                        """)
+                .author("Beatrice Vane")
+                .source("Cinema Gazette")
+                .category(Category.ENTERTAINMENT)
+                .publishedAt(now.minusHours(10))
+                .readingTimeMinutes(5)
+                .isTrending(true)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-ent-02")
+                .imageUrl("https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=1200&q=80")
+                .title("The Resurgence of Physical Media: Analog Vinyl and Lossless Tape Sales Outpace Digital Downloads")
+                .summary("Music lovers and Gen Z audiophiles lead a cultural renaissance in physical album ownership, album artwork appreciation, and high-fidelity hi-fi.")
+                .content("""
+                        LONDON — Official recorded music trade figures indicate physical media revenue—spearheaded by vinyl LP pressings and collector-edition cassette runs—has surpassed paid digital track downloads for the second consecutive fiscal year.
+
+                        Cultural commentators trace the shift to digital fatigue, as younger listeners seek deliberate, tactile engagement with complete album tracklists and elaborate gatefold liner notes rather than algorithmic shuffle streams.
+                        """)
+                .author("Liam Gallagher-Smith")
+                .source("Sound & Culture")
+                .category(Category.ENTERTAINMENT)
+                .publishedAt(now.minusHours(19))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-ent-03")
+                .imageUrl("https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80")
+                .title("Restoration of Cinematic Classics in 8K Spatial Audio Breathes New Life into Archive Masterpieces")
+                .summary("Film heritage archives in Bologna and Los Angeles use photogrammetry and acoustic simulation to restore damaged 1950s negative reels.")
+                .content("""
+                        BOLOGNA — The Cineteca di Bologna presented stunning newly restored 8K transfers of five neo-realist cinematic treasures at the Cinema Ritrovato festival this week.
+
+                        Engineers utilized AI-assisted dye-degradation modeling and photogrammetric scratch elimination to recover original nitrate grain resolution without introducing artificial waxiness. Spatial audio engineers also reconstructed original multichannel magnetic tapes to preserve natural acoustic ambience.
+                        """)
+                .author("Silvia Conti")
+                .source("Film Preservation Quarterly")
+                .category(Category.ENTERTAINMENT)
+                .publishedAt(now.minusDays(1).minusHours(9))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-ent-04")
+                .imageUrl("https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80")
+                .title("London's West End and Broadway Embrace Live Hybrid Performance Broadcasts")
+                .summary("Ultra-low-latency cinematic camera rigs bring sold-out theatrical productions to international cinema halls in simultaneous interactive screenings.")
+                .content("""
+                        LONDON — The National Theatre's latest staging of an original historical tragedy was broadcast live to over six hundred independent cinemas across thirty countries simultaneously, using multi-camera robotic rigs equipped with large-format cinema lenses.
+
+                        Audience members in remote cinemas praised the immersive cinematography, which captured subtle facial expressions and stage details often missed by gallery theater patrons.
+                        """)
+                .author("Oliver Trenchard")
+                .source("The Stage Review")
+                .category(Category.ENTERTAINMENT)
+                .publishedAt(now.minusDays(2).minusHours(8))
+                .readingTimeMinutes(4)
+                .build());
+
+        list.add(Article.builder()
+                .id("art-ent-05")
+                .imageUrl("https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80")
+                .title("Interactive Narrative Literature: How Video Game Writing Emerged as High Literary Art")
+                .summary("Prestigious literary prizes consider story-driven interactive fiction, celebrating character development, moral agency, and dialogue branch craft.")
+                .content("""
+                        OXFORD — At an international comparative literature symposium in Oxford, scholars and novelists debated the elevation of interactive story-driven video game screenplays alongside traditional dramatic playwriting and literary fiction.
+
+                        Academics highlighted titles featuring branching player choices, complex unreliable narrators, and nuanced philosophical themes, arguing that interactive narrative constitutes one of the most vital literary frontiers of the twenty-first century.
+                        """)
+                .author("Dr. Penelope Wright")
+                .source("Literary Studies Review")
+                .category(Category.ENTERTAINMENT)
+                .publishedAt(now.minusDays(3).minusHours(7))
+                .readingTimeMinutes(5)
+                .build());
+
+        return Collections.unmodifiableList(list);
+    }
+}

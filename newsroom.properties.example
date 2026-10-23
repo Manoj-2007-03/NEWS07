@@ -1,0 +1,34 @@
+# ==============================================================
+# NEWSROOM DESKTOP EDITION - CONFIGURATION PROPERTIES
+# ==============================================================
+# Copy this file to "newsroom.properties" and adjust your settings.
+# All settings have safe built-in defaults; this file is optional.
+# ==============================================================
+
+# News Provider Strategy:
+#   RSS        - Zero API key required! Real-time editorial feeds from BBC, Wired, The Hindu, etc. (Default)
+#   NEWS_API   - NewsAPI.org integration (Requires valid API key below)
+#   COMPOSITE  - Prefers NewsAPI when key is present, falls back automatically to RSS
+news.provider=COMPOSITE
+
+# NewsAPI.org API Key (Optional):
+# Obtain a free developer key at https://newsapi.org
+# Can also be set via system environment variable: NEWS_API_KEY
+news.api.key=
+
+# Base URL for NewsAPI:
+news.api.base.url=https://newsapi.org/v2
+
+# Default Country Code for NewsAPI (e.g. us, in, gb, ca, au):
+news.country=us
+
+# Automatic Background Refresh Interval (in minutes):
+# Options: 0 (Manual only), 15, 30, 60. Default is 30.
+news.refresh.interval=30
+
+# SQLite Database File Path:
+# Local database for persistent bookmarks, reading history, and offline article cache.
+db.path=newsroom.db
+
+# Network Request Timeout (in seconds):
+network.timeout.seconds=10
