@@ -102,7 +102,7 @@ public final class JsonUtil {
             HistoryEntry entry = history.get(i);
             sb.append("{")
               .append("\"article\":").append(articleToJson(entry.getArticle())).append(",")
-              .append("\"readAt\":\"").append(entry.getFormattedReadAt()).append("\"")
+              .append("\"readAt\":\"").append(entry.getAccessTime() != null ? entry.getAccessTime().toString() : "").append("\"")
               .append("}");
         }
         sb.append("]");

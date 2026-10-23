@@ -119,12 +119,17 @@ public class NewsWebServer {
 
         List<Article> result;
         if ("featured".equalsIgnoreCase(type)) {
-            result = newsService.getFeaturedArticles();
+            Article feat = newsService.getFeaturedArticle();
+            result = feat != null ? List.of(feat) : List.of();
         } else if ("trending".equalsIgnoreCase(type)) {
-            result = newsService.getTrendingArticles();
+            result = newsService.getTrendingArticles(10);
         } else {
             Category category = Category.fromDisplayName(categoryParam);
-            result = newsService.getArticles(category);
+            if (category == Category.HOME) {
+                result = newsService.getAllArticles();
+            } else {
+                result = newsService.getArticlesByCategory(category);
+            }
         }
 
         sendJsonResponse(exchange, 200, JsonUtil.articlesToJson(result));
@@ -174,8 +179,10 @@ public class NewsWebServer {
             String body = readRequestBody(exchange);
             String articleId = JsonUtil.extractField(body, "articleId");
             if (articleId != null && !articleId.isEmpty()) {
-                Optional<Article> articleOpt = newsService.getArticleById(articleId);
-                articleOpt.ifPresent(bookmarkService::addBookmark);
+                Article article = newsService.getArticleById(articleId);
+                if (article != null) {
+                    bookmarkService.addBookmark(article);
+                }
                 sendJsonResponse(exchange, 200, "{\"status\":\"success\",\"bookmarked\":true}");
             } else {
                 sendJsonResponse(exchange, 400, "{\"error\":\"Missing articleId\"}");
@@ -221,7 +228,10 @@ public class NewsWebServer {
             String body = readRequestBody(exchange);
             String articleId = JsonUtil.extractField(body, "articleId");
             if (articleId != null) {
-                newsService.getArticleById(articleId).ifPresent(historyService::recordAccess);
+                Article article = newsService.getArticleById(articleId);
+                if (article != null) {
+                    historyService.recordAccess(article);
+                }
                 sendJsonResponse(exchange, 200, "{\"status\":\"success\"}");
             } else {
                 sendJsonResponse(exchange, 400, "{\"error\":\"Missing articleId\"}");
