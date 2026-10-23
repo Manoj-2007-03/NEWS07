@@ -226,6 +226,7 @@ public class DatabaseNewsServiceImpl implements NewsService {
     }
 
     private void notifyRefreshStarted() {
+        if (refreshListeners.isEmpty()) return;
         Runnable r = () -> {
             for (RefreshListener l : new ArrayList<>(refreshListeners)) {
                 l.onRefreshStarted();
@@ -236,6 +237,7 @@ public class DatabaseNewsServiceImpl implements NewsService {
     }
 
     private void notifyRefreshCompleted(boolean success, int count, String msg) {
+        if (refreshListeners.isEmpty()) return;
         Runnable r = () -> {
             for (RefreshListener l : new ArrayList<>(refreshListeners)) {
                 l.onRefreshCompleted(success, count, msg);

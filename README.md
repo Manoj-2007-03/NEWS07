@@ -358,3 +358,24 @@ RESULTS: 9 / 9 TEST SUITES PASSED (100.0%)
 | **Offline Resilience** | Transparent cache-first fallback with `Offline • Using Cache` indicator badge in header. |
 | **Security & Secrets** | Credentials loaded via `newsroom.properties` or environment variables; excluded via `.gitignore`; masked in UI. |
 | **Preserved Phase 1 UI** | All original layouts, typography, color palettes, and navigation cards preserved and enhanced. |
+
+---
+
+## 9. Cloud Web Deployment (Render / Docker)
+
+NEWSROOM v2.0 introduces dual-mode capability:
+- **Desktop Swing Mode**: Runs locally as a native window application on Windows, macOS, or Linux.
+- **Cloud Web Mode**: Automatically activates when deployed on Render or any cloud container platform listening on `$PORT`.
+
+### Deploying to Render
+1. In Render Dashboard, click **New +** &rarr; **Web Service**.
+2. Connect your GitHub repository (`https://github.com/Manoj-2007-03/NEWS07.git`).
+3. Select **Docker** as the Runtime (or let Render detect the root `Dockerfile` and `render.yaml`).
+4. Click **Deploy Web Service**.
+5. Once built, Render will issue a public live URL (e.g. `https://newsroom.onrender.com`).
+
+### Testing Cloud Web Mode Locally
+```bash
+java -cp "bin;lib/*" com.newsroom.NewsReaderApplication --web
+# Open http://localhost:8080 in your browser
+```

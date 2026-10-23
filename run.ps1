@@ -7,11 +7,11 @@ Write-Host "=================================================" -ForegroundColor 
 
 if (Test-Path "newsroom-2.0.0.jar") {
     Write-Host "Launching from packaged JAR..." -ForegroundColor Green
-    java "-Dawt.useSystemAAFontSettings=on" "-Dswing.aatext=true" -jar newsroom-2.0.0.jar
+    java "-Dawt.useSystemAAFontSettings=on" "-Dswing.aatext=true" -jar newsroom-2.0.0.jar $args
 } elseif (Test-Path "newsroom-1.0.0.jar") {
     Write-Host "Launching from packaged JAR..." -ForegroundColor Green
-    java "-Dawt.useSystemAAFontSettings=on" "-Dswing.aatext=true" -jar newsroom-1.0.0.jar
+    java "-Dawt.useSystemAAFontSettings=on" "-Dswing.aatext=true" -jar newsroom-1.0.0.jar $args
 } else {
     Write-Host "Launching from bin directory with SQLite classpath..." -ForegroundColor Green
-    java "-Dawt.useSystemAAFontSettings=on" "-Dswing.aatext=true" -cp "bin;lib/*" com.newsroom.NewsReaderApplication
+    java "-Dawt.useSystemAAFontSettings=on" "-Dswing.aatext=true" -cp "bin;lib/*" com.newsroom.NewsReaderApplication $args
 }

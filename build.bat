@@ -20,6 +20,11 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b %ERRORLEVEL%
 )
 
+if exist "src\main\resources" (
+    echo Copying web and application resources...
+    xcopy /E /I /Y "src\main\resources" "bin" >nul
+)
+
 echo Packaging runnable JAR with manifest...
 jar cfm newsroom-2.0.0.jar manifest.txt -C bin .
 copy /Y newsroom-2.0.0.jar newsroom-1.0.0.jar >nul

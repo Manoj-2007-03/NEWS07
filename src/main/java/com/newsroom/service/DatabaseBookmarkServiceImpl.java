@@ -94,6 +94,7 @@ public class DatabaseBookmarkServiceImpl implements BookmarkService {
     private void notifyListeners(Article article, boolean isBookmarked) {
         List<BookmarkChangeListener> copy;
         synchronized (this) {
+            if (listeners.isEmpty()) return;
             copy = new ArrayList<>(listeners);
         }
 

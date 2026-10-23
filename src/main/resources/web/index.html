@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEWSROOM - Editorial Desktop & Cloud Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --surface: #f1f5f9;
+      --border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --gold: #d97706;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-display: 'Cinzel', serif;
+      --radius: 12px;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.12);
+      --font-size-scale: 1;
+    }
+
+    body.dark {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --surface: #1e293b;
+      --border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #7dd3fc;
+      --gold: #fbbf24;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+      --shadow-hover: 0 12px 30px -4px rgba(0, 0, 0, 0.6);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s, border-color 0.2s; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Masthead Header */
+    header {
+      background: var(--card-bg);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    .top-bar {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-section {
+      text-align: center;
+      padding: 18px 24px 14px;
+      position: relative;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      letter-spacing: 4px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    /* Controls in Top Bar */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .btn:hover { background: var(--surface); }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Navigation Bar */
+    nav {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 8px 24px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      align-items: center;
+    }
+    nav::-webkit-scrollbar { display: none; }
+
+    .nav-tab {
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    .nav-tab:hover { color: var(--text-main); background: var(--surface); }
+    .nav-tab.active {
+      background: var(--text-main);
+      color: var(--card-bg);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 12px;
+      margin-left: 4px;
+      font-weight: 700;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1300px;
+      width: 100%;
+      margin: 20px auto 40px;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    /* Search & Filter Bar */
+    .search-container {
+      display: flex;
+      margin-bottom: 24px;
+      gap: 12px;
+    }
+    .search-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      box-shadow: var(--shadow);
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+    }
+
+    /* Hero Section (Featured + Trending) */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
+    .featured-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .featured-card:hover { box-shadow: var(--shadow-hover); }
+    .featured-img-wrap {
+      width: 100%;
+      height: 320px;
+      background: var(--surface);
+      overflow: hidden;
+      position: relative;
+    }
+    .featured-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .featured-card:hover .featured-img-wrap img { transform: scale(1.03); }
+
+    .featured-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .category-pill {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--surface);
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .featured-title {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      line-height: 1.25;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .featured-summary {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    /* Trending List */
+    .trending-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .trending-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .trending-item:last-child { border-bottom: none; }
+    .trending-num {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 26px;
+    }
+    .trending-title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .trending-title:hover { color: var(--accent); }
+
+    /* Article Feed Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .article-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 190px;
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .article-card:hover .card-img img { transform: scale(1.04); }
+
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.22rem;
+      line-height: 1.35;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+    .card-summary {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .bookmark-btn {
+      background: none;
+      border: none;
+      font-size: 1.15rem;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text-muted);
+    }
+    .bookmark-btn:hover { color: var(--gold); }
+    .bookmark-btn.active { color: var(--gold); }
+
+    /* Reader Modal View */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      position: relative;
+      animation: modalSlide 0.25s ease-out;
+    }
+    @keyframes modalSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      background: var(--surface);
+    }
+
+    .modal-content {
+      padding: 32px 36px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .modal-close:hover { background: rgba(0,0,0,0.85); }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 14px 0 16px;
+    }
+
+    .modal-body-text {
+      font-family: var(--font-serif);
+      font-size: calc(1.15rem * var(--font-size-scale));
+      line-height: 1.8;
+      color: var(--text-main);
+      margin: 24px 0;
+      white-space: pre-line;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .empty-state h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 300;
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+    .toast.show { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Footer */
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Masthead Header -->
+  <header>
+    <div class="top-bar">
+      <div>
+        <span id="currentDate">Friday, October 23</span> &bull; <span>Global Edition</span>
+      </div>
+      <div class="controls">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="pulse-dot"></div>
+          <span style="font-size:0.8rem;font-weight:600;">LIVE FEED</span>
+        </div>
+        <button class="btn" id="syncBtn" onclick="syncLiveArticles()">
+          <span>&#8635;</span> Sync News
+        </button>
+        <button class="btn" id="themeToggle" onclick="toggleTheme()">
+          <span id="themeIcon">&#9790;</span> <span id="themeText">Dark</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <a href="#" class="brand-title" onclick="selectTab('HOME')">NEWSROOM</a>
+      <div class="brand-tagline">The Standard for Discerning Thought &bull; Desktop & Cloud Edition v2.0</div>
+    </div>
+
+    <!-- Category Nav -->
+    <nav id="categoryNav">
+      <div class="nav-tab active" onclick="selectTab('HOME')">Home</div>
+      <div class="nav-tab" onclick="selectTab('LATEST')">Latest</div>
+      <div class="nav-tab" onclick="selectTab('TECHNOLOGY')">Technology</div>
+      <div class="nav-tab" onclick="selectTab('BUSINESS')">Business</div>
+      <div class="nav-tab" onclick="selectTab('SCIENCE')">Science</div>
+      <div class="nav-tab" onclick="selectTab('WORLD')">World</div>
+      <div class="nav-tab" onclick="selectTab('INDIA')">India</div>
+      <div class="nav-tab" onclick="selectTab('SPORTS')">Sports</div>
+      <div class="nav-tab" onclick="selectTab('ENTERTAINMENT')">Entertainment</div>
+      <div class="nav-tab" onclick="selectTab('BOOKMARKS')">
+        Bookmarks <span class="badge" id="bookmarkCount">0</span>
+      </div>
+      <div class="nav-tab" onclick="selectTab('HISTORY')">History</div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Search Bar -->
+    <div class="search-container">
+      <div class="search-box">
+        <span style="margin-right:10px;color:var(--text-muted);font-size:1.1rem;">&#128269;</span>
+        <input type="text" id="searchInput" placeholder="Search archive across headlines, authors, and topics..." oninput="handleSearch(this.value)">
+      </div>
+    </div>
+
+    <!-- Hero / Featured & Trending Section (only shown on HOME) -->
+    <div class="hero-grid" id="heroSection">
+      <div class="featured-card" id="featuredArticleCard" onclick="openFeaturedArticle()">
+        <div class="featured-img-wrap">
+          <img id="featuredImg" src="" alt="Featured story">
+        </div>
+        <div class="featured-content">
+          <span class="category-pill" id="featuredCategory">Featured</span>
+          <h2 class="featured-title" id="featuredTitle">Loading featured story...</h2>
+          <p class="featured-summary" id="featuredSummary"></p>
+          <div class="meta-row">
+            <span id="featuredByline">By NEWSROOM Editorial</span>
+            <span id="featuredReadTime">5 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trending-box">
+        <div class="section-heading">
+          <span>Trending Dispatch</span>
+          <span style="font-size:0.75rem;color:var(--gold);font-family:var(--font-sans);font-weight:700;">TOP 5</span>
+        </div>
+        <div id="trendingList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Section Heading -->
+    <div class="section-heading" id="gridHeading">
+      <span id="currentDeskTitle">Top Stories</span>
+      <span id="articleCountLabel" style="font-size:0.85rem;color:var(--text-muted);font-family:var(--font-sans);"></span>
+    </div>
+
+    <!-- Article Cards Grid -->
+    <div class="articles-grid" id="articlesGrid">
+      <!-- Populated dynamically -->
+    </div>
+
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <h3>No Articles Found</h3>
+      <p>Try searching for a different keyword or choose another editorial desk.</p>
+    </div>
+  </main>
+
+  <!-- Reader Modal Overlay -->
+  <div class="modal-overlay" id="readerModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeReaderModal()">&times;</button>
+      <img id="modalImg" class="modal-header-img" src="" alt="Article cover">
+      <div class="modal-content">
+        <span class="category-pill" id="modalCategory">General</span>
+        <h1 class="modal-title" id="modalTitle"></h1>
+        <div class="meta-row" style="margin-bottom:20px;padding-top:0;border:none;">
+          <span id="modalByline">By Author</span>
+          <span id="modalTimeAndDate">5 min read &bull; Oct 23</span>
+        </div>
+        <div class="modal-body-text" id="modalBody"></div>
+        <div class="modal-actions">
+          <button class="btn" id="modalBookmarkBtn" onclick="toggleModalBookmark()">
+            &#9734; Save to Bookmarks
+          </button>
+          <a id="modalSourceLink" href="#" target="_blank" class="btn btn-primary" style="text-decoration:none;">
+            Read Full Story on Source &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toastMessage">Action completed</div>
+
+  <footer>
+    &copy; 2026 NEWSROOM Desktop & Cloud Edition &bull; High-Performance Editorial Architecture
+  </footer>
+
+  <script>
+    let currentCategory = 'HOME';
+    let allArticles = [];
+    let featuredArticle = null;
+    let currentModalArticle = null;
+    let isDarkMode = false;
+    let searchTimeout = null;
+
+    // Date formatting
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', options);
+
+    // Initial Load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadCategoryArticles('HOME');
+      updateBookmarkCount();
+    });
+
+    async function selectTab(category) {
+      currentCategory = category;
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        const text = tab.innerText.toUpperCase();
+        if (text.startsWith(category)) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      const hero = document.getElementById('heroSection');
+      const heading = document.getElementById('currentDeskTitle');
+
+      if (category === 'HOME') {
+        hero.style.display = 'grid';
+        heading.innerText = 'Top Stories';
+        loadCategoryArticles('HOME');
+      } else if (category === 'BOOKMARKS') {
+        hero.style.display = 'none';
+        heading.innerText = 'Saved Bookmarks';
+        loadBookmarks();
+      } else if (category === 'HISTORY') {
+        hero.style.display = 'none';
+        heading.innerText = 'Reading History';
+        loadHistory();
+      } else {
+        hero.style.display = 'none';
+        heading.innerText = category.charAt(0) + category.slice(1).toLowerCase() + ' Desk';
+        loadCategoryArticles(category);
+      }
+    }
+
+    async function loadCategoryArticles(category) {
+      try {
+        const res = await fetch(`/api/articles?category=${category}`);
+        const data = await res.json();
+        allArticles = data;
+
+        if (category === 'HOME') {
+          // Separate featured and trending
+          featuredArticle = data.find(a => a.isFeatured) || data[0];
+          renderFeatured(featuredArticle);
+
+          const trendingRes = await fetch('/api/articles?type=trending');
+          const trendingData = await trendingRes.json();
+          renderTrending(trendingData);
+
+          // Grid shows latest/rest
+          const rest = data.filter(a => !featuredArticle || a.id !== featuredArticle.id);
+          renderGrid(rest);
+        } else {
+          renderGrid(data);
+        }
+      } catch (err) {
+        console.error('Error fetching articles:', err);
+      }
+    }
+
+    function renderFeatured(article) {
+      if (!article) return;
+      document.getElementById('featuredTitle').innerText = article.title;
+      document.getElementById('featuredSummary').innerText = article.summary || article.content.substring(0, 160) + '...';
+      document.getElementById('featuredCategory').innerText = article.categoryDisplayName || article.category;
+      document.getElementById('featuredByline').innerText = `By ${article.author} · ${article.source}`;
+      document.getElementById('featuredReadTime').innerText = `${article.readingTimeMinutes} min read`;
+      
+      const img = document.getElementById('featuredImg');
+      img.src = article.imageUrl && article.imageUrl.trim() !== '' 
+        ? article.imageUrl 
+        : getPlaceholderImg(article.title, article.category);
+    }
+
+    function openFeaturedArticle() {
+      if (featuredArticle) openArticleReader(featuredArticle);
+    }
+
+    function renderTrending(trending) {
+      const container = document.getElementById('trendingList');
+      container.innerHTML = '';
+      (trending || []).slice(0, 5).forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'trending-item';
+        div.onclick = () => openArticleReader(item);
+        div.innerHTML = `
+          <div class="trending-num">0${idx + 1}</div>
+          <div class="trending-title">${escapeHtml(item.title)}</div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function renderGrid(articles) {
+      const grid = document.getElementById('articlesGrid');
+      const empty = document.getElementById('emptyState');
+      grid.innerHTML = '';
+
+      if (!articles || articles.length === 0) {
+        grid.style.display = 'none';
+        empty.style.display = 'block';
+        document.getElementById('articleCountLabel').innerText = '0 stories';
+        return;
+      }
+
+      grid.style.display = 'grid';
+      empty.style.display = 'none';
+      document.getElementById('articleCountLabel').innerText = `${articles.length} stories available`;
+
+      articles.forEach(a => {
+        const card = document.createElement('div');
+        card.className = 'article-card';
+        const imgSrc = a.imageUrl && a.imageUrl.trim() !== '' ? a.imageUrl : getPlaceholderImg(a.title, a.category);
+
+        card.innerHTML = `
+          <div class="card-img" onclick='openArticleReader(${JSON.stringify(a).replace(/'/g, "&apos;")})'>
+            <img src="${imgSrc}" alt="${escapeHtml(a.title)}" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span class="category-pill">${a.categoryDisplayName || a.category}</span>
+              <button class="bookmark-btn ${a.isBookmarked ? 'active' : ''}" 
+                      onclick="event.stopPropagation(); toggleBookmark('${a.id}', this)" title="Bookmark story">
+                ${a.isBookmarked ? '&#9733;' : '&#9734;'}
+              </button>
+            </div>
+            <div class="card-title" onclick='openArticleReader(${JSON.stringify(a).replace(/'/g, "&apos;")})'>
+              ${escapeHtml(a.title)}
+            </div>
+            <div class="card-summary" onclick='openArticleReader(${JSON.stringify(a).replace(/'/g, "&apos;")})'>
+              ${escapeHtml(a.summary || a.content)}
+            </div>
+            <div class="meta-row" onclick='openArticleReader(${JSON.stringify(a).replace(/'/g, "&apos;")})'>
+              <span>${escapeHtml(a.source || a.author)}</span>
+              <span>${a.readingTimeMinutes} min</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    async function loadBookmarks() {
+      try {
+        const res = await fetch('/api/bookmarks');
+        const data = await res.json();
+        renderGrid(data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadHistory() {
+      try {
+        const res = await fetch('/api/history');
+        const data = await res.json();
+        const articles = data.map(h => h.article);
+        renderGrid(articles);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function updateBookmarkCount() {
+      try {
+        const res = await fetch('/api/bookmarks');
+        const data = await res.json();
+        document.getElementById('bookmarkCount').innerText = data.length || 0;
+      } catch (e) {}
+    }
+
+    async function toggleBookmark(articleId, btn) {
+      const isCurrentlyBookmarked = btn.classList.contains('active');
+      const method = isCurrentlyBookmarked ? 'DELETE' : 'POST';
+      const url = isCurrentlyBookmarked ? `/api/bookmarks/${articleId}` : '/api/bookmarks';
+
+      try {
+        await fetch(url, {
+          method: method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ articleId: articleId })
+        });
+
+        if (isCurrentlyBookmarked) {
+          btn.classList.remove('active');
+          btn.innerHTML = '&#9734;';
+          showToast('Removed from Bookmarks');
+        } else {
+          btn.classList.add('active');
+          btn.innerHTML = '&#9733;';
+          showToast('Saved to Bookmarks');
+        }
+        updateBookmarkCount();
+        if (currentCategory === 'BOOKMARKS') loadBookmarks();
+      } catch (err) {
+        console.error('Error toggling bookmark:', err);
+      }
+    }
+
+    function openArticleReader(article) {
+      currentModalArticle = article;
+      const modal = document.getElementById('readerModal');
+      document.getElementById('modalTitle').innerText = article.title;
+      document.getElementById('modalCategory').innerText = article.categoryDisplayName || article.category;
+      document.getElementById('modalByline').innerText = `Reported by ${article.author} · ${article.source}`;
+      document.getElementById('modalTimeAndDate').innerText = `${article.readingTimeMinutes} min read`;
+      document.getElementById('modalBody').innerText = article.content || article.summary;
+
+      const img = document.getElementById('modalImg');
+      img.src = article.imageUrl && article.imageUrl.trim() !== '' ? article.imageUrl : getPlaceholderImg(article.title, article.category);
+
+      const sourceLink = document.getElementById('modalSourceLink');
+      if (article.originalUrl && article.originalUrl.trim() !== '') {
+        sourceLink.href = article.originalUrl;
+        sourceLink.style.display = 'inline-flex';
+      } else {
+        sourceLink.style.display = 'none';
+      }
+
+      const bmBtn = document.getElementById('modalBookmarkBtn');
+      bmBtn.innerHTML = article.isBookmarked ? '&#9733; Saved in Bookmarks' : '&#9734; Save to Bookmarks';
+
+      // Record reading history
+      fetch('/api/history', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articleId: article.id })
+      }).catch(e => console.error(e));
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeReaderModal() {
+      document.getElementById('readerModal').classList.remove('open');
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOnOverlay(e) {
+      if (e.target.id === 'readerModal') closeReaderModal();
+    }
+
+    async function toggleModalBookmark() {
+      if (!currentModalArticle) return;
+      const btn = document.getElementById('modalBookmarkBtn');
+      const isCurrently = currentModalArticle.isBookmarked;
+
+      await toggleBookmark(currentModalArticle.id, {
+        classList: {
+          contains: () => isCurrently,
+          add: () => { currentModalArticle.isBookmarked = true; },
+          remove: () => { currentModalArticle.isBookmarked = false; }
+        },
+        set innerHTML(val) {}
+      });
+
+      currentModalArticle.isBookmarked = !isCurrently;
+      btn.innerHTML = currentModalArticle.isBookmarked ? '&#9733; Saved in Bookmarks' : '&#9734; Save to Bookmarks';
+    }
+
+    async function syncLiveArticles() {
+      const btn = document.getElementById('syncBtn');
+      btn.disabled = true;
+      btn.innerHTML = '&#8635; Synchronizing...';
+      try {
+        const res = await fetch(`/api/refresh?category=${currentCategory}`, { method: 'POST' });
+        const data = await res.json();
+        showToast(data.message || 'News archive synchronized');
+        loadCategoryArticles(currentCategory);
+      } catch (e) {
+        showToast('Synchronized with local offline cache');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>&#8635;</span> Sync News';
+      }
+    }
+
+    function handleSearch(query) {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(async () => {
+        if (!query || query.trim() === '') {
+          selectTab(currentCategory);
+          return;
+        }
+        document.getElementById('heroSection').style.display = 'none';
+        document.getElementById('currentDeskTitle').innerText = `Search: "${query}"`;
+        try {
+          const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+          const data = await res.json();
+          renderGrid(data);
+        } catch (e) {
+          console.error(e);
+        }
+      }, 300);
+    }
+
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      document.body.classList.toggle('dark', isDarkMode);
+      document.getElementById('themeIcon').innerHTML = isDarkMode ? '&#9788;' : '&#9790;';
+      document.getElementById('themeText').innerText = isDarkMode ? 'Light' : 'Dark';
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMessage');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    function getPlaceholderImg(title, category) {
+      const colors = {
+        TECHNOLOGY: '#6366f1', BUSINESS: '#10b981', SCIENCE: '#0ea5e9',
+        SPORTS: '#ea580c', ENTERTAINMENT: '#a855f7', WORLD: '#2563eb', INDIA: '#d97706'
+      };
+      const bg = colors[category] || '#1e293b';
+      const cleanTitle = (title || 'NEWSROOM').substring(0, 32);
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+        <rect width="600" height="400" fill="${bg}"/>
+        <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="serif" font-size="28" font-weight="bold">${category || 'NEWS'}</text>
+        <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="16">${cleanTitle}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Keyboard navigation: ESC to close modal
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeReaderModal();
+    });
+  </script>
+</body>
+</html>
