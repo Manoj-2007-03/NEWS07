@@ -1,0 +1,13 @@
+{
+  "name": "newsroom-web",
+  "version": "2.0.0",
+  "description": "NEWSROOM Editorial Desktop & Cloud Edition",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build OK')\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
