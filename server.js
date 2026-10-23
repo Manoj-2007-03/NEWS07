@@ -41,9 +41,10 @@ function sendJson(res, statusCode, data) {
 }
 
 const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  const pathname = parsedUrl.pathname;
+  const reqUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  const pathname = reqUrl.pathname;
   const method = req.method.toUpperCase();
+  const getQuery = (key) => reqUrl.searchParams.get(key) || '';
 
   // CORS preflight
   if (method === 'OPTIONS') {
@@ -68,8 +69,8 @@ const server = http.createServer((req, res) => {
 
   // Articles
   if (pathname === '/api/articles') {
-    const type = (parsedUrl.query.type || '').toLowerCase();
-    const cat = (parsedUrl.query.category || 'HOME').toUpperCase();
+    const type = getQuery('type').toLowerCase();
+    const cat = (getQuery('category') || 'HOME').toUpperCase();
 
     let list = articles.map(a => ({
       ...a,
@@ -89,7 +90,7 @@ const server = http.createServer((req, res) => {
 
   // Search
   if (pathname === '/api/search') {
-    const q = (parsedUrl.query.q || '').trim().toLowerCase();
+    const q = getQuery('q').trim().toLowerCase();
     if (!q) return sendJson(res, 200, []);
     const results = articles.filter(a => 
       a.title.toLowerCase().includes(q) || 
